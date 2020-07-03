@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+// Components
+import Question from "./components/question";
+import PlayersSelect from "./components/playersSelect";
+import PlayersAssigned from "./components/playersAssigned";
 
 const App = () => {
+  // removing body margin
+  useEffect(() => {
+    document.body.style.margin = "0";
+  }, []);
+
   const poolBallArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   const [poolBalls, setPoolBalls] = useState(poolBallArr);
   const [players, setPlayers] = useState(2);
@@ -12,17 +20,13 @@ const App = () => {
   });
 
   const inputPlayerNumber = (e) => {
-    setPlayers(e.target.value);
+    setPlayers(Number(e.target.innerText.charAt(0)));
   };
 
   const selectRandomBall = () => {
     const ballNumber = poolBalls[Math.floor(Math.random() * poolBalls.length)];
-    let arr = poolBalls;
-    let index = arr.indexOf(ballNumber);
-    arr.splice(index, 1);
-    console.log("ball chosen", ballNumber);
-    setPoolBalls(arr);
-    console.log("old", poolBalls);
+    let index = poolBalls.indexOf(ballNumber);
+    setPoolBalls(poolBalls.splice(index, 1));
     return ballNumber;
   };
 
@@ -40,33 +44,16 @@ const App = () => {
 
   return (
     <>
-      <section>
-        <h3>select amount of players</h3>
-        <input onChange={inputPlayerNumber} type="number" />
-        <button onClick={submitPlayerNumber}>submit</button>
-      </section>
-      <section>
-        {playersBall.map((player, index) => (
-          <div key={index}>
-            <h4>{player.player}</h4>
-            {selectedPlayer.index === index && selectedPlayer.isOpen && (
-              <h5>{player.ball}</h5>
-            )}
-            <button
-              onClick={() =>
-                setSelectedPlayer({
-                  index: index,
-                  isOpen: !selectedPlayer.isOpen,
-                })
-              }
-            >
-              {selectedPlayer.index === index && selectedPlayer.isOpen
-                ? "hide ball number"
-                : "show ball number"}
-            </button>
-          </div>
-        ))}
-      </section>
+      <Question question={"How many people are playing?"} />
+      <PlayersSelect
+        submitPlayerNumber={submitPlayerNumber}
+        inputPlayerNumber={inputPlayerNumber}
+        players={players}
+      />
+      <PlayersAssigned
+        playersBall={playersBall}
+        selectedPlayer={selectedPlayer}
+      />
     </>
   );
 };
