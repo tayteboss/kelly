@@ -10,7 +10,7 @@ const PlayersAssigned = (props) => {
           {props.selectedPlayer.index === index &&
             props.selectedPlayer.isOpen && <h5>{player.ball}</h5>}
           <button className="btn btn--dark box-padding btn--icon">
-            <h1>P{index + 2}</h1>
+            <h1>P{index + 1}</h1>
             <img src={arrowIcon} alt="" />
           </button>
         </div>
