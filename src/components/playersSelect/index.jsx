@@ -30,6 +30,7 @@ const PlayersSelect = (props) => {
           </button>
         </div>
       </div>
+      <div className="fill fill--light" />
     </PlayerSelectStyles>
   );
 };

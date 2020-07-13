@@ -99,10 +99,12 @@ const App = () => {
         players={players}
         hideSelectPlayers={hideSelectPlayers}
       />
-      <PlayersAssigned
-        playersBall={playersBall}
-        selectedPlayer={selectedPlayer}
-      />
+      {hideSelectPlayers && (
+        <PlayersAssigned
+          playersBall={playersBall}
+          selectedPlayer={selectedPlayer}
+        />
+      )}
     </>
   );
 };

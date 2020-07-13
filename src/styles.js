@@ -24,6 +24,10 @@ const GlobalStyles = styled.div`
     font-weight: 400;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   .box-padding {
     padding: 15px 20px;
     min-height: 86px;
@@ -39,10 +43,19 @@ const GlobalStyles = styled.div`
       color: #cccccc;
       border-top: solid 1px #333333;
       transition: color 300ms linear;
+
+      &:last-child {
+        border-bottom: solid 1px #333333;
+      }
     }
 
     &--active {
       color: #1a1a1a;
+    }
+
+    &--player {
+      position: relative;
+      overflow: hidden;
     }
 
     &--dark {
@@ -62,8 +75,32 @@ const GlobalStyles = styled.div`
 
       img {
         width: 25px;
+        z-index: 15;
+
+        &--drag {
+        }
       }
     }
+  }
+
+  .fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+
+    &--black {
+      background-color: #1a1a1a;
+    }
+
+    &--light {
+      background-color: #e6e6e1;
+    }
+  }
+
+  .player-assign-wrapper {
+    padding-bottom: 86px;
   }
 `;
 export default GlobalStyles;
