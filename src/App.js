@@ -21,7 +21,7 @@ const setupReducer = (state, action) => {
     case "showPlayers": {
       return {
         ...state,
-        question: "Slide or tap player tile to reveal ball",
+        question: "Slide arrow to reveal ball number",
         hideSelectPlayers: true,
       };
     }
@@ -47,6 +47,8 @@ const App = () => {
   // removing body margin
   useEffect(() => {
     document.body.style.margin = "0";
+    document.body.style.overflowX = "hidden";
+    document.body.style.width = "100vw";
   }, []);
 
   const [state, dispatch] = useReducer(setupReducer, initialState);
@@ -87,24 +89,26 @@ const App = () => {
 
   return (
     <>
-      <Question question={question} />
-      <PlayersSelect
-        submitPlayerNumber={submitPlayerNumber}
-        inputPlayerNumber={(e) => {
-          dispatch({
-            type: "setPlayers",
-            payload: Number(e.target.innerText.charAt(0)),
-          });
-        }}
-        players={players}
-        hideSelectPlayers={hideSelectPlayers}
-      />
-      {hideSelectPlayers && (
-        <PlayersAssigned
-          playersBall={playersBall}
-          selectedPlayer={selectedPlayer}
+      <div className="body">
+        <Question question={question} />
+        <PlayersSelect
+          submitPlayerNumber={submitPlayerNumber}
+          inputPlayerNumber={(e) => {
+            dispatch({
+              type: "setPlayers",
+              payload: Number(e.target.innerText.charAt(0)),
+            });
+          }}
+          players={players}
+          hideSelectPlayers={hideSelectPlayers}
         />
-      )}
+        {hideSelectPlayers && (
+          <PlayersAssigned
+            playersBall={playersBall}
+            selectedPlayer={selectedPlayer}
+          />
+        )}
+      </div>
     </>
   );
 };

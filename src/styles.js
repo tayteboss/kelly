@@ -12,6 +12,11 @@ const GlobalStyles = styled.div`
     outline: 0;
   }
 
+  .body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
   font-family: Arial, Helvetica, sans-serif;
 
   h1 {
@@ -101,6 +106,10 @@ const GlobalStyles = styled.div`
 
   .player-assign-wrapper {
     padding-bottom: 86px;
+  }
+
+  .player-select {
+    overflow-x: hidden;
   }
 `;
 export default GlobalStyles;

@@ -14,6 +14,10 @@ const PlayersAssignedStyles = styled.section`
 
     &--1 {
       background-color: yellow;
+
+      h1 {
+        color: black;
+      }
     }
 
     &--2 {
@@ -46,6 +50,10 @@ const PlayersAssignedStyles = styled.section`
 
     &--9 {
       background-color: yellow;
+
+      h1 {
+        color: black;
+      }
     }
 
     &--10 {
